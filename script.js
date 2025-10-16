@@ -1,31 +1,37 @@
 const canvas = document.getElementById("particleCanvas");
 const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
 
 let particlesArray = [];
-const maxParticles = 1;
-const particleSize = 5;
-const particleSpeed = 2;
 
 class Particle {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.size = Math.random() * particleSize + 1;
-        this.speedX = (Math.random() - 0.5) * particleSpeed;
-        this.speedY = (Math.random() - 0.5) * particleSpeed;
-    }
-
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-    
-            // Bounce off walls
-            if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-            if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+        constructor (x, y) {
+            this.x = x;
+            this.y = y;
+            this.size = 10;
+            this.weight = 6;
+            this.directionX = 1;
         }
     
+        update() {
+            this.y += this.weight;
+            this.x += this.directionX;
+            // Bounce off walls
+            if (this.x > canvas.width || this.x < 0) {
+                this.directionX = -this.directionX;
+            }
+            if (this.y > canvas.height - this.size || this.y < this.size) {
+                this.weight = -this.weight;
+            }
+        }
+
         draw() {
             ctx.fillStyle = 'white';
             ctx.beginPath();
@@ -33,3 +39,16 @@ class Particle {
             ctx.fill();
         }
     }
+        
+    const particle1 = new Particle(100, 100);
+
+    function animate() {
+    ctx.clearRect(0,0, canvas.width, canvas.height);
+    particle1.update();
+    particle1.draw();
+    requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    
