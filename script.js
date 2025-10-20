@@ -15,7 +15,7 @@ class Particle {
         constructor (x, y) {
             this.x = x;
             this.y = y;
-            this.size = 10;
+            this.size = 5;
             this.weight = 6;
             this.directionX = 1;
         }
