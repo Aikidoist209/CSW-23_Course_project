@@ -1,6 +1,6 @@
 html {
-    background: linear-gradient(to bottom, mediumturquoise, rgb(172, 181, 185));
-    repeat: no-repeat;
+    background: linear-gradient(to bottom, rgb(29, 170, 88), rgb(172, 181, 185));
+    appearance: no-repeat;
     height: 100%;
     font-family: 'Helvetica', sans-serif;
 }
