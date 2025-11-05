@@ -11,14 +11,41 @@ h1 {
     text-align: center;
     text-shadow: 2px 2px 4px goldenrod; 
 }
-
-p {
+h2 {
     text-align: center;
     color: black;
     text-align: center;
     font-size: 20px;
     text-shadow: 1px 1px 2px goldenrod; 
 }
+
+nav ul {
+    text-align: center;
+    margin-bottom: 20px;
+    border: black 2px solid;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+    border: black 1px solid;
+    background-color:rgb(184, 23, 176);
+    
+}
+ nav ul li a {
+    text-decoration: none;
+    color: inherit;
+    color:rgb(172, 181, 185);
+}
+
+nav ul li a:hover {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+}
+
+
+
 
 canvas {
     display: block;
