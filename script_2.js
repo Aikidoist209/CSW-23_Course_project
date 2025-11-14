@@ -54,17 +54,14 @@ document.addEventListener('DOMContentLoaded', () => {
     updateDateTime();
     setInterval(updateDateTime, 1000);
 
-    // Canvas already defined at top of file
-    // const canvas = document.getElementById('phase2Canvas');
-    // const ctx = canvas.getContext('2d');
     
     let animationId;
     const dots = [];
-    const numDots = 50; // Number of dots in the swarm
+    const numDots = 20; 
     const maxSpeed = 3;
     const minSpeed = 1;
     
-    // Initialize the swarm of dots
+   
     function initializeSwarm() {
         for (let i = 0; i < numDots; i++) {
             dots.push({
@@ -72,11 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 y: Math.random() * canvas.height,
                 dx: (Math.random() * (maxSpeed - minSpeed) + minSpeed) * (Math.random() < 0.5 ? -1 : 1),
                 dy: (Math.random() * (maxSpeed - minSpeed) + minSpeed) * (Math.random() < 0.5 ? -1 : 1),
-                radius: Math.random() * 3 + 2, // Random size between 2-5
+                radius: Math.random() * 3 + 2, 
                 color: {
-                    r: Math.floor(Math.random() * 100) + 155, // Light colors (155-255)
-                    g: Math.floor(Math.random() * 100) + 155,
-                    b: Math.floor(Math.random() * 100) + 155
+                    r: 255, 
+                    g: 255,
+                    b: 255
                 }
             });
         }
@@ -86,40 +83,37 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
         for (let dot of dots) {
-            // Update position
+            
             dot.x += dot.dx;
             dot.y += dot.dy;
             
-            // Bounce off edges
+            
             if (dot.x + dot.radius > canvas.width || dot.x - dot.radius < 0) {
                 dot.dx = -dot.dx;
-                // Keep dot within bounds
+                
                 dot.x = Math.max(dot.radius, Math.min(canvas.width - dot.radius, dot.x));
             }
             
             if (dot.y + dot.radius > canvas.height || dot.y - dot.radius < 0) {
                 dot.dy = -dot.dy;
-                // Keep dot within bounds
+               
                 dot.y = Math.max(dot.radius, Math.min(canvas.height - dot.radius, dot.y));
             }
             
-            // Draw the dot
+           
             ctx.beginPath();
             ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
-            ctx.fillStyle = `rgb(${dot.color.r}, ${dot.color.g}, ${dot.color.b})`;
-            ctx.fill();
-            
-            // Add a subtle glow effect
+            ctx.fillStyle = 'white';
             ctx.shadowBlur = 10;
-            ctx.shadowColor = `rgb(${dot.color.r}, ${dot.color.g}, ${dot.color.b})`;
+            ctx.shadowColor = 'white';
             ctx.fill();
-            ctx.shadowBlur = 0; // Reset shadow
+            ctx.shadowBlur = 0; 
         }
         
         animationId = requestAnimationFrame(animateCanvas);
     }
     
-    // Initialize and start the swarm animation
+    
     initializeSwarm();
     animateCanvas();
 });
